@@ -40,6 +40,15 @@ RSpec.describe DinoManagement do
         it 'calculates carnivore dino health correctly' do
           expect(result[:dinos][1]['health']).to eq(100 - healthy_carnivore['age'])
         end
+
+        context 'with zero age' do
+          let(:zero_age_dino) { [{ 'name' => 'DinoC', 'category' => 'herbivore', 'period' => 'Jurassic', 'diet' => 'plants', 'age' => 0 }] }
+          
+          it 'sets health to zero' do
+            result = described_class.run(zero_age_dino)
+            expect(result[:dinos][0]['health']).to eq(0)
+          end
+        end
       end
 
       describe 'dino comment setting' do
