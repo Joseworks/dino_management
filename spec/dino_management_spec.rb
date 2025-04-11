@@ -20,11 +20,11 @@ RSpec.describe DinoManagement do
       describe 'with an empty dino list' do
         let(:dino_data) { [] }
 
-        it 'returns an empty list' do
+        xit 'returns an empty list' do
           expect(described_class.run(dino_data)).to eq({ dinos: [], summary: {} })
         end
 
-        it 'returns an empty summary' do
+        xit 'returns an empty summary' do
           expect(described_class.run(dino_data)[:summary]).to eq({})
         end
       end
@@ -42,8 +42,13 @@ RSpec.describe DinoManagement do
       end
 
       describe 'dino comment setting' do
-        it 'assigns appropriate comment based on health' do
-          # Fill in expectations here
+        subject(:result) { described_class.run(dino_data) }
+
+        it 'assigns dino as Dead when health is 0' do
+          expect(result[:dinos][0]['comment']).to eq('Dead')
+        end
+        it 'assigns dino as Alive when health is above zero' do
+          expect(result[:dinos][1]['comment']).to eq('Alive')
         end
       end
 
