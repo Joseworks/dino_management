@@ -9,3 +9,6 @@ AllCops:
 
 Style/StringLiterals:
   EnforcedStyle: single_quotes
+
+Layout/LineLength:
+  Max: 120
