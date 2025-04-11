@@ -14,6 +14,7 @@ RSpec.describe DinoManagement do
     let(:healthy_carnivore) do
       { 'name' => 'DinoB', 'category' => 'carnivore', 'period' => 'Jurassic', 'diet' => 'meat', 'age' => 80 }
     end
+
     let(:dino_data) { [old_herbivore, healthy_carnivore] }
 
     context 'when using the long and unoptimized method' do
@@ -37,7 +38,7 @@ RSpec.describe DinoManagement do
         end
 
         it 'calculates carnivore dino health correctly' do
-          expect(result[:dinos][1]['health']).to eq(20)
+          expect(result[:dinos][1]['health']).to eq(100 - healthy_carnivore['age'])
         end
       end
 
@@ -61,13 +62,19 @@ RSpec.describe DinoManagement do
         end
 
         it 'sets age_metrics to half the age for alive dinos' do
-          expect(result[:dinos][1]['age_metrics']).to eq(40)
+          expect(result[:dinos][1]['age_metrics']).to eq(healthy_carnivore['age'] / 2)
         end
       end
 
       describe 'dino category summary' do
-        it 'counts dinos by categories' do
-          # Fill in expectations here
+        subject(:result) { described_class.run(dino_data) }
+
+        it 'counts herbivore dinos correctly' do
+          expect(result[:summary]['herbivore']).to eq(1)
+        end
+
+        it 'counts carnivore dinos correctly' do
+          expect(result[:summary]['carnivore']).to eq(1)
         end
       end
     end
