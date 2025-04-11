@@ -49,6 +49,15 @@ RSpec.describe DinoManagement do
             expect(result[:dinos][0]['health']).to eq(0)
           end
         end
+        
+        context 'with mismatched diet and category' do
+          let(:mismatched_dino) { [{ 'name' => 'DinoE', 'category' => 'herbivore', 'period' => 'Cretaceous', 'diet' => 'meat', 'age' => 50 }] }
+          
+          it 'reduces health by half' do
+            result = described_class.run(mismatched_dino)
+            expect(result[:dinos][0]['health']).to eq(25) # (100 - 50) / 2
+          end
+        end
       end
 
       describe 'dino comment setting' do
