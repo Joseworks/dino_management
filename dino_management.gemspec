@@ -34,6 +34,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # Uncomment to register a new dependency of your gem
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'rubocop', '~> 1.73'
   spec.add_development_dependency 'rubocop-rspec', '~> 3.5'
