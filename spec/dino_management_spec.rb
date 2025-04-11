@@ -17,8 +17,14 @@ RSpec.describe DinoManagement do
 
     context 'when using the long and unoptimized method' do
       describe 'dino health calculation' do
-        it 'calculates dino health using age, category and diet' do
-          # Fill in expectations here
+        subject(:result) { described_class.run(dino_data) }
+
+        it 'calculates herbivore dino health correctly' do
+          expect(result[:dinos][0]['health']).to eq(0)
+        end
+
+        it 'calculates carnivore dino health correctly' do
+          expect(result[:dinos][1]['health']).to eq(20)
         end
       end
 
