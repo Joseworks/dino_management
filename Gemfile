@@ -11,3 +11,4 @@ gem 'rake', '~> 13.0'
 gem 'rspec', '~> 3.2'
 
 gem 'rubocop', '~> 1.73'
+gem 'simplecov'
