@@ -54,8 +54,6 @@ Style/StringLiterals:
   Exclude:
     - 'Rakefile'
     - 'bin/console'
-    - 'lib/dino_management.rb'
     - 'lib/dino_management/version.rb'
     - 'refactor_me.rb'
-    - 'spec/dino_management_spec.rb'
     - 'spec/spec_helper.rb'
