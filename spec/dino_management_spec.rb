@@ -47,6 +47,7 @@ RSpec.describe DinoManagement do
         it 'assigns dino as Dead when health is 0' do
           expect(result[:dinos][0]['comment']).to eq('Dead')
         end
+
         it 'assigns dino as Alive when health is above zero' do
           expect(result[:dinos][1]['comment']).to eq('Alive')
         end
