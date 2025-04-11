@@ -54,8 +54,14 @@ RSpec.describe DinoManagement do
       end
 
       describe 'dino age metric calculation' do
-        it 'computes age_metrics based on age and comment' do
-          # Fill in expectations here
+        subject(:result) { described_class.run(dino_data) }
+
+        it 'sets age_metrics to 0 for dead dinos' do
+          expect(result[:dinos][0]['age_metrics']).to eq(0)
+        end
+
+        it 'sets age_metrics to half the age for alive dinos' do
+          expect(result[:dinos][1]['age_metrics']).to eq(40)
         end
       end
 
