@@ -6,6 +6,7 @@ module DinoManagement
   class Error < StandardError; end
 
   def self.run(dinos)
+    return { dinos: [], summary: {} } if dinos.empty? || dinos.nil?
     dinos.each do |d|
       if d['age'] > 0
         if d['category'] == 'herbivore'
