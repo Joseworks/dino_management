@@ -70,6 +70,18 @@ RSpec.describe DinoManagement do
         it 'assigns dino as Alive when health is above zero' do
           expect(result[:dinos][1]['comment']).to eq('Alive')
         end
+
+        context 'with zero age' do
+          let(:zero_age_dino) do
+            [{ 'name' => 'DinoC', 'category' => 'herbivore', 'period' => 'Jurassic',
+               'diet' => 'plants', 'age' => 0 }]
+          end
+
+          it 'marks the dino as Dead' do
+            result = described_class.run(zero_age_dino)
+            expect(result[:dinos][0]['comment']).to eq('Dead')
+          end
+        end
       end
 
       describe 'dino age metric calculation' do
