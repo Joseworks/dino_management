@@ -94,7 +94,6 @@ Style/BlockDelimiters:
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/CombinableLoops:
   Exclude:
-    - 'lib/dino_management.rb'
     - 'refactor_me.rb'
 
 # Offense count: 4
@@ -103,7 +102,6 @@ Style/CombinableLoops:
 # SupportedStyles: assign_to_condition, assign_inside_condition
 Style/ConditionalAssignment:
   Exclude:
-    - 'lib/dino_management.rb'
     - 'refactor_me.rb'
 
 # Offense count: 1
@@ -112,7 +110,6 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'lib/dino_management.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
@@ -128,7 +125,6 @@ Style/FrozenStringLiteralComment:
 # Configuration parameters: AllowIfModifier.
 Style/IfInsideElse:
   Exclude:
-    - 'lib/dino_management.rb'
     - 'refactor_me.rb'
 
 # Offense count: 6
@@ -138,7 +134,6 @@ Style/IfInsideElse:
 Style/NumericPredicate:
   Exclude:
     - 'spec/**/*'
-    - 'lib/dino_management.rb'
     - 'refactor_me.rb'
 
 # Offense count: 1
@@ -156,12 +151,10 @@ Style/StringLiterals:
   Exclude:
     - 'Rakefile'
     - 'bin/console'
-    - 'lib/dino_management/version.rb'
     - 'refactor_me.rb'
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/ZeroLengthPredicate:
   Exclude:
-    - 'lib/dino_management.rb'
     - 'refactor_me.rb'
