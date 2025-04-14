@@ -36,11 +36,7 @@ module DinoManagement
                             end
     end
 
-    if dinos&.length&.positive?
-      categories = dinos.group_by { |dino| dino['category'] }.map do |category, dino_list|
-        { category: category, count: dino_list.count }
-      end
-    end
+    categories = category_summary(dinos) if dinos&.length&.positive?
 
     summary = {}
     categories.each do |category_metrics|
@@ -48,5 +44,11 @@ module DinoManagement
     end
 
     { dinos: dinos, summary: summary }
+  end
+
+  def self.category_summary(dinos)
+    dinos.group_by { |dino| dino['category'] }.map do |category, dino_list|
+      { category: category, count: dino_list.count }
+    end
   end
 end
