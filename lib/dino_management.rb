@@ -19,12 +19,7 @@ module DinoManagement
         dino['health'] = 0
       end
 
-      dino['comment'] = if dino['health'].positive?
-                          'Alive'
-                        else
-                          'Dead'
-                        end
-
+      dino['comment'] = determine_status(dino['health'])
       dino['age_metrics'] = calculate_age_metrics(dino)
     end
 
@@ -36,6 +31,10 @@ module DinoManagement
     end
 
     { dinos: dinos, summary: summary }
+  end
+
+  def self.determine_status(health)
+    health.positive? ? 'Alive' : 'Dead'
   end
 
   def self.calculate_age_metrics(dino)
