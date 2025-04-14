@@ -9,8 +9,7 @@ module DinoManagement
     return { dinos: [], summary: {} } if dinos.empty? || dinos.nil?
 
     dinos.each do |dino|
-      calculate_health(dino)
-
+      dino['health'] = calculate_health(dino)
       dino['comment'] = determine_status(dino['health'])
       dino['age_metrics'] = calculate_age_metrics(dino)
     end
@@ -26,14 +25,12 @@ module DinoManagement
   end
 
   def self.calculate_health(dino)
-    if dino['age'].positive?
-      if dino['category'] == 'herbivore'
-        dino['health'] = dino['diet'] == 'plants' ? (100 - dino['age']) : (100 - dino['age']) / 2
-      elsif dino['category'] == 'carnivore'
-        dino['health'] = dino['diet'] == 'meat' ? (100 - dino['age']) : (100 - dino['age']) / 2
-      end
-    else
-      dino['health'] = 0
+    return 0 unless dino['age'].nil? || dino['age'].positive?
+
+    if dino['category'] == 'herbivore'
+      dino['diet'] == 'plants' ? (100 - dino['age']) : (100 - dino['age']) / 2
+    elsif dino['category'] == 'carnivore'
+      dino['diet'] == 'meat' ? (100 - dino['age']) : (100 - dino['age']) / 2
     end
   end
 
