@@ -2,6 +2,7 @@
 
 require_relative 'dino_management/version'
 
+# Dino Management
 module DinoManagement
   class Error < StandardError; end
 
@@ -16,22 +17,15 @@ module DinoManagement
 
     categories = category_summary(dinos) if dinos&.length&.positive?
 
-    summary = {}
-    categories.each do |category_metrics|
-      summary[category_metrics[:category]] = category_metrics[:count]
-    end
-
-    { dinos: dinos, summary: summary }
+    { dinos: dinos, summary: format_summary(categories) }
   end
 
   def self.calculate_health(dino)
     return 0 unless dino['age'].nil? || dino['age'].positive?
 
-    if dino['category'] == 'herbivore'
-      dino['diet'] == 'plants' ? (100 - dino['age']) : (100 - dino['age']) / 2
-    elsif dino['category'] == 'carnivore'
-      dino['diet'] == 'meat' ? (100 - dino['age']) : (100 - dino['age']) / 2
-    end
+    return (100 - dino['age']) / 2 if dino['category'] == 'herbivore'
+
+    (100 - dino['age']) if dino['category'] == 'carnivore'
   end
 
   def self.determine_status(health)
@@ -48,5 +42,13 @@ module DinoManagement
     dinos.group_by { |dino| dino['category'] }.map do |category, dino_list|
       { category: category, count: dino_list.count }
     end
+  end
+
+  def self.format_summary(categories)
+    summary = {}
+    categories.each do |category_metrics|
+      summary[category_metrics[:category]] = category_metrics[:count]
+    end
+    summary
   end
 end
