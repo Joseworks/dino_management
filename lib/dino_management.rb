@@ -7,8 +7,9 @@ module DinoManagement
 
   def self.run(dinos)
     return { dinos: [], summary: {} } if dinos.empty? || dinos.nil?
+
     dinos.each do |dino|
-      if dino['age'] > 0
+      if dino['age'].positive?
         if dino['category'] == 'herbivore'
           dino['health'] = dino['diet'] == 'plants' ? (100 - dino['age']) : (100 - dino['age']) / 2
         elsif dino['category'] == 'carnivore'
@@ -18,26 +19,24 @@ module DinoManagement
         dino['health'] = 0
       end
 
-      if dino['health'] > 0
-        dino['comment'] = 'Alive'
-      else
-        dino['comment'] = 'Dead'
-      end
+      dino['comment'] = if dino['health'].positive?
+                          'Alive'
+                        else
+                          'Dead'
+                        end
+
+      dino['age_metrics'] = if dino['comment'] == 'Alive'
+                              if dino['age'] > 1
+                                (dino['age'] / 2).to_i
+                              else
+                                0
+                              end
+                            else
+                              0
+                            end
     end
 
-    dinos.each do |dino|
-      if dino['comment'] == 'Alive'
-        if dino['age'] > 1
-          dino['age_metrics'] = (dino['age'] / 2).to_i
-        else
-          dino['age_metrics'] = 0
-        end
-      else
-        dino['age_metrics'] = 0
-      end
-    end
-
-    if dinos && dinos.length > 0
+    if dinos&.length&.positive?
       categories = dinos.group_by { |dino| dino['category'] }.map do |category, dino_list|
         { category: category, count: dino_list.count }
       end
