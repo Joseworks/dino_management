@@ -25,7 +25,7 @@ module DinoManagement
                           'Dead'
                         end
 
-      calculate_age_metrics(dino)
+      dino['age_metrics'] = calculate_age_metrics(dino)
     end
 
     categories = category_summary(dinos) if dinos&.length&.positive?
@@ -39,15 +39,9 @@ module DinoManagement
   end
 
   def self.calculate_age_metrics(dino)
-    dino['age_metrics'] = if dino['comment'] == 'Alive'
-                            if dino['age'] > 1
-                              (dino['age'] / 2).to_i
-                            else
-                              0
-                            end
-                          else
-                            0
-                          end
+    return (dino['age'] / 2).to_i if dino['comment'] == 'Alive' && dino['age'] > 1
+
+    0
   end
 
   def self.category_summary(dinos)
