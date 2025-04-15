@@ -21,11 +21,11 @@ RSpec.describe DinoManagement do
       let(:dino_data) { [] }
 
       it 'returns an empty list' do
-        expect(described_class.run(dino_data)).to eq({ dinos: [], summary: {} })
+        expect(described_class.run(dino_data)).to eq({ 'dinos' => [], 'summary' => {} })
       end
 
       it 'returns an empty summary' do
-        expect(described_class.run(dino_data)[:summary]).to eq({})
+        expect(described_class.run(dino_data)['summary']).to eq({})
       end
     end
 
@@ -33,11 +33,11 @@ RSpec.describe DinoManagement do
       subject(:result) { described_class.run(dino_data) }
 
       it 'calculates herbivore dino health correctly' do
-        expect(result[:dinos][0]['health']).to eq(0)
+        expect(result['dinos'][0]['health']).to eq(0)
       end
 
       it 'calculates carnivore dino health correctly' do
-        expect(result[:dinos][1]['health']).to eq(100 - healthy_carnivore['age'])
+        expect(result['dinos'][1]['health']).to eq(100 - healthy_carnivore['age'])
       end
 
       context 'with zero age' do
@@ -47,7 +47,7 @@ RSpec.describe DinoManagement do
 
         it 'sets health to zero' do
           result = described_class.run(zero_age_dino)
-          expect(result[:dinos][0]['health']).to eq(0)
+          expect(result['dinos'][0]['health']).to eq(0)
         end
       end
 
@@ -58,7 +58,7 @@ RSpec.describe DinoManagement do
 
         it 'reduces health by half' do
           result = described_class.run(mismatched_dino)
-          expect(result[:dinos][0]['health']).to eq(25) # (100 - 50) / 2
+          expect(result['dinos'][0]['health']).to eq(25) # (100 - 50) / 2
         end
       end
     end
@@ -67,11 +67,11 @@ RSpec.describe DinoManagement do
       subject(:result) { described_class.run(dino_data) }
 
       it 'assigns dino as Dead when health is 0' do
-        expect(result[:dinos][0]['comment']).to eq('Dead')
+        expect(result['dinos'][0]['comment']).to eq('Dead')
       end
 
       it 'assigns dino as Alive when health is above zero' do
-        expect(result[:dinos][1]['comment']).to eq('Alive')
+        expect(result['dinos'][1]['comment']).to eq('Alive')
       end
 
       context 'with zero age' do
@@ -81,7 +81,7 @@ RSpec.describe DinoManagement do
 
         it 'marks the dino as Dead' do
           result = described_class.run(zero_age_dino)
-          expect(result[:dinos][0]['comment']).to eq('Dead')
+          expect(result['dinos'][0]['comment']).to eq('Dead')
         end
       end
     end
@@ -90,11 +90,11 @@ RSpec.describe DinoManagement do
       subject(:result) { described_class.run(dino_data) }
 
       it 'sets age_metrics to 0 for dead dinos' do
-        expect(result[:dinos][0]['age_metrics']).to eq(0)
+        expect(result['dinos'][0]['age_metrics']).to eq(0)
       end
 
       it 'sets age_metrics to half the age for alive dinos' do
-        expect(result[:dinos][1]['age_metrics']).to eq(healthy_carnivore['age'] / 2)
+        expect(result['dinos'][1]['age_metrics']).to eq(healthy_carnivore['age'] / 2)
       end
 
       context 'with age of one' do
@@ -104,7 +104,7 @@ RSpec.describe DinoManagement do
 
         it 'sets age_metrics to zero' do
           result = described_class.run(one_age_dino)
-          expect(result[:dinos][0]['age_metrics']).to eq(0)
+          expect(result['dinos'][0]['age_metrics']).to eq(0)
         end
       end
     end
@@ -113,11 +113,11 @@ RSpec.describe DinoManagement do
       subject(:result) { described_class.run(dino_data) }
 
       it 'counts herbivore dinos correctly' do
-        expect(result[:summary]['herbivore']).to eq(1)
+        expect(result['summary']['herbivore']).to eq(1)
       end
 
       it 'counts carnivore dinos correctly' do
-        expect(result[:summary]['carnivore']).to eq(1)
+        expect(result['summary']['carnivore']).to eq(1)
       end
     end
   end

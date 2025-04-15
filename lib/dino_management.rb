@@ -7,7 +7,7 @@ module DinoManagement
   class Error < StandardError; end
 
   def self.run(dinos)
-    return { dinos: [], summary: {} } if dinos.empty? || dinos.nil?
+    return { 'dinos' => [], 'summary' => {} } if dinos.empty? || dinos.nil?
 
     dinos.each do |dino|
       dino['health'] = calculate_health(dino)
@@ -17,7 +17,7 @@ module DinoManagement
 
     categories = category_summary(dinos) if dinos&.length&.positive?
 
-    { dinos: dinos, summary: format_summary(categories) }
+    { 'dinos' => dinos, 'summary' => format_summary(categories) }
   end
 
   def self.calculate_health(dino)
@@ -33,6 +33,8 @@ module DinoManagement
   end
 
   def self.calculate_age_metrics(dino)
+    dino['age'] = dino['age'].to_i if dino['age'].is_a?(String)
+
     return (dino['age'] / 2).to_i if dino['comment'] == 'Alive' && dino['age'] > 1
 
     0
