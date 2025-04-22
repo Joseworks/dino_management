@@ -17,7 +17,10 @@ module DinoManagement
 
     categories = category_summary(dinos) if dinos&.length&.positive?
 
-    { 'dinos' => dinos, 'summary' => format_summary(categories) }
+    {
+      'dinos' => dinos,
+      'summary' => format_summary(categories)
+    }
   end
 
   def self.calculate_health(dino)
