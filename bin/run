@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require_relative "../lib/dino_management"
+
+sample_data = [
+  { 'name' => 'T-Rex', 'age' => 20, 'category' => 'carnivore' },
+  { 'name' => 'Triceratops', 'age' => 10, 'category' => 'herbivore' }
+]
+
+result = DinoManagement.run(sample_data)
+puts result
