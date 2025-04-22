@@ -9,13 +9,15 @@ Gem::Specification.new do |spec|
   spec.email = ['josefernandez@joseworks.org']
 
   spec.summary = 'A Ruby gem for managing dinosaur data and operations'
-  spec.description = 'This gem provides functionalities to manage and manipulate dinosaur-related data, including information retrieval and data processing.'
+  spec.description = 'This gem provides functionalities to manage and manipulate dinosaur-related data,
+  including information retrieval and data processing.'
 
   spec.homepage = 'https://github.com/Joseworks/dino_management'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.3.7'
 
-  spec.metadata['allowed_push_host'] = 'https://rubygems.org'  # Allow pushing to RubyGems.org
+  spec.metadata['rubygems_uri'] = 'https://rubygems.org/gems/dino_management'
+  spec.metadata['allowed_push_host'] = 'https://rubygems.org' # Allow pushing to RubyGems.org
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = spec.homepage

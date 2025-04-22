@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-require_relative "../lib/dino_management"
+# frozen_string_literal: true
+
+require_relative '../lib/dino_management'
 
 sample_data = [
   { 'name' => 'T-Rex', 'age' => 20, 'category' => 'carnivore' },
