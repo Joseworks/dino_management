@@ -1,11 +1,18 @@
 inherit_from:
   - .rubocop_todo.yml
-require:
-  - rubocop-rspec
-  - rubocop-rake
 
 AllCops:
-  TargetRubyVersion: 3.3
+  NewCops: enable
+  TargetRubyVersion: 2.6
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+
+plugins:
+  - rubocop-rspec
+  - rubocop-rake
 
 Style/StringLiterals:
   EnforcedStyle: single_quotes

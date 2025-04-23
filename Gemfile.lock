@@ -96,6 +96,7 @@ PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
+  bundler (~> 2.3, >= 2.3.0)
   dino_management!
   irb
   pry
